@@ -25,7 +25,7 @@ export default function Home() {
           <div className="-mt-4 ml-10 break-words px-2">
             For those joking about quitting software to become farmers… you do
             know you&apos;ll just spend all your time fighting bugs off your
-            crops right? It’s basically the same profession
+            crops right? It&apos;s basically the same profession
           </div>
         </div>
 
@@ -47,7 +47,7 @@ export default function Home() {
               Nov 3
             </p>
           </div>
-          <div className="-mt-4 ml-10 break-words px-2">Hello YouTube!</div>
+          <div className="-mt-4 ml-10 break-words px-2">Hello!</div>
         </div>
 
         {/* */}

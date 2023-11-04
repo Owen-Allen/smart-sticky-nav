@@ -15,7 +15,7 @@ const Nav = () => {
     if (currentScrollPos > prevScrollPos.current) {
       // user scrolled down
       let change = currentScrollPos - prevScrollPos.current;
-      let newMarginTop = top - change * 2;
+      let newMarginTop = top - change;
       if (newMarginTop < -80) {
         newMarginTop = -80;
       }
@@ -23,7 +23,7 @@ const Nav = () => {
     } else if (currentScrollPos < prevScrollPos.current) {
       // user scrolled up
       let change = prevScrollPos.current - currentScrollPos;
-      let newMarginTop = top + change * 2;
+      let newMarginTop = top + change;
       if (newMarginTop > 0) {
         newMarginTop = 0;
       }
@@ -51,7 +51,7 @@ const Nav = () => {
         <CluckButton />
       </div>
     </nav>
-  ); 
+  );
 };
 
 export default Nav;
