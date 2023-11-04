@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 
 import Dropdown from "@/components/dropdown";
 import LogoLink from "@/components/logoLink";
@@ -17,7 +15,7 @@ const Nav = () => {
     if (currentScrollPos > prevScrollPos.current) {
       // user scrolled down
       let change = currentScrollPos - prevScrollPos.current;
-      let newMarginTop = top - change;
+      let newMarginTop = top - change * 2;
       if (newMarginTop < -80) {
         newMarginTop = -80;
       }
@@ -25,7 +23,7 @@ const Nav = () => {
     } else if (currentScrollPos < prevScrollPos.current) {
       // user scrolled up
       let change = prevScrollPos.current - currentScrollPos;
-      let newMarginTop = top + change;
+      let newMarginTop = top + change * 2;
       if (newMarginTop > 0) {
         newMarginTop = 0;
       }
@@ -43,19 +41,17 @@ const Nav = () => {
 
   return (
     <nav
-      className={`sticky z-50 flex h-20 w-full flex-wrap items-center justify-start bg-red-400 px-4 font-mono`}
+      className={`sticky z-50 flex h-20 w-full bg-sky-400`}
       style={{ top: `${top}px` }}
     >
-      <div className="flex w-full items-center justify-between">
-        <div className="mx-4 flex grow basis-auto items-center sm:mx-16">
-          <Dropdown />
-          <LogoLink className="-mr-12 ml-auto w-12" />{" "}
-          {/* -mr must match w to be centered correctly */}
-          <CluckButton />
-        </div>
+      <div className="mx-4 flex w-full items-center sm:mx-16">
+        <Dropdown />
+        <LogoLink className="-mr-12 ml-auto w-12" />{" "}
+        {/* -mr must match w to be centered correctly */}
+        <CluckButton />
       </div>
     </nav>
-  );
+  ); 
 };
 
 export default Nav;
