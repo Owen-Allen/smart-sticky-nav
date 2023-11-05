@@ -12,33 +12,31 @@ const MIN_TOP = -80; // minimum y position used to fully hide the navbar above t
 const Nav = () => {
     const [top, setTop] = useState<number>(0); // always between MIN_TOP and 0
     const previousPosition = useRef<number>(0);
-
-    const handleScroll = () => {
-        const currentPosition = window.scrollY;
-
-        // change > 0 -> user scrolled down, change < 0 -> user scrolled up
-        const change = currentPosition - previousPosition.current;
-
-        // move nav to be opposite of the change
-        let newTop = top - change;
-
-        if (newTop > 0) {
-            // do not let the navbar slide too far down the page
-            newTop = 0;
-        } else if (newTop < MIN_TOP) {
-            // do not let the navbar slide too far above the page
-            newTop = MIN_TOP;
-        }
-        setTop(newTop);
-        previousPosition.current = currentPosition;
-    };
-
+    
     useEffect(() => {
+        const handleScroll = () => {
+            const currentPosition = window.scrollY;
+            // change > 0 -> user scrolled down, change < 0 -> user scrolled up
+            const change = currentPosition - previousPosition.current;
+    
+            setTop((prevTop) => {
+                let newTop = prevTop - change;
+                if (newTop > 0) {
+                    newTop = 0;
+                } else if (newTop < MIN_TOP) {
+                    newTop = MIN_TOP;
+                }
+                return newTop;
+            });
+    
+            previousPosition.current = currentPosition;
+        };
+
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    });
+    }, []);
 
     return (
         <nav
